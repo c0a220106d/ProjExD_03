@@ -156,8 +156,8 @@ def main():
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
     draw_sc = pg.Surface((100, 100))
-    sc_img = pg.draw.rect(draw_sc, (255, 0, 0), (20, 10, 60, 80))
-    sc_img = pg.draw.rect(draw_sc, (0, 0, 0), (30, 20, 40, 60))
+    score = 0 
+    fonto = pg.font.Font(None, 170)
     
 
     bird = Bird(3, (900, 400))
@@ -196,7 +196,10 @@ def main():
                     beam = None
                     del bombs[i]
                     bird.change_img(6, screen)
+                    score += 1
                     break
+        txt = fonto.render(str(score), True, (255, 0, 0))
+        screen.blit(txt, [1510, 800])
 
         pg.display.update()
         clock.tick(1000)
