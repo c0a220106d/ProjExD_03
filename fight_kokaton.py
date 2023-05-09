@@ -86,6 +86,12 @@ class Bird:
         if not (sum_mv[0] == 0 and sum_mv[1] == 0):
             self._img = self._imgs[tuple(sum_mv)]  # 押されたキーの合計値
         screen.blit(self._img, self._rct)
+    
+    def get_direction(self):
+        """
+        こうかとんが向いている方向を表す速度ベクトルをタプルで返す
+        """
+
 
 
 class Bomb:
@@ -149,6 +155,10 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
+    draw_sc = pg.Surface((100, 100))
+    sc_img = pg.draw.rect(draw_sc, (255, 0, 0), (20, 10, 60, 80))
+    sc_img = pg.draw.rect(draw_sc, (0, 0, 0), (30, 20, 40, 60))
+    
 
     bird = Bird(3, (900, 400))
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
@@ -164,6 +174,7 @@ def main():
 
         tmr += 1
         screen.blit(bg_img, [0, 0])
+        bg_img.blit(draw_sc, [1500, 800])
         
         
         for bomb in bombs:
