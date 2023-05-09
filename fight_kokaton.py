@@ -98,7 +98,8 @@ class Bomb:
     """
     爆弾に関するクラス
     """
-    _colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255)]
+    _colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), 
+               (255, 255, 0), (255, 0, 255), (0, 255, 255)]
     _dires = [-1, 0, +1]
     def __init__(self):
         """
@@ -135,9 +136,12 @@ class Beam:
         """
         割愛
         """
-        self._img = pg.transform.rotozoom(pg.image.load(f"ex03/fig/beam.png"), 0, 2.0)  # 画像surface
-        self._rct = self._img.get_rect()  # 画像surfaceに対応したrect
-        self._rct.left = bird._rct.right  # こうかとんの右側にビームの左側を合わせる
+        # 画像surface
+        self._img = pg.transform.rotozoom(pg.image.load(f"ex03/fig/beam.png"), 0, 2.0)
+        # 画像surfaceに対応したrect
+        self._rct = self._img.get_rect()
+        # こうかとんの右側にビームの左側を合わせる
+        self._rct.left = bird._rct.right
         self._rct.centery = bird._rct.centery
         self._vx, self._vy = +1, 0
 
